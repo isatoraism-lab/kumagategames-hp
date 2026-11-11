@@ -25,3 +25,5 @@
 `{title:'新ゲーム',subtitle:'Season 1',status:'preparing',image:'assets/new-logo.webp',alt:'新ゲームのロゴ',scene:'axisbay',logoScale:1}`
 
 注意：長いゲーム名は小さい画面で改行されることがあります。名称は15文字程度以内が推奨です。
+## 既存の正方形ロゴについて
+`trimBackground:true` と `background:'#ffffff'` または `background:'#000000'` を指定すると、背景余白を自動検出して16:9の統一背景に収めます。ラベルは画像の左上に重なり、ゲーム名や背景色との不一致を避けます。新規ロゴは推奨1200×675pxで作り、通常は `trimBackground` を省略してください。

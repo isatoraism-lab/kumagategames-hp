@@ -146,3 +146,29 @@ main{grid-template-rows:minmax(0,1.05fr) minmax(0,.72fr) minmax(0,.26fr)}
 .games-panel--storybook .game-info small{font-size:clamp(8px,.71vw,13px);line-height:1.17}
 @media(max-width:900px){.games-panel--storybook .game-info strong{font-size:clamp(11px,2vw,18px)}.games-panel--storybook .game-info small{font-size:clamp(9px,1.5vw,13px)}}
 @media(max-width:600px){.games-panel--storybook .game-grid{gap:5px}.games-panel--storybook .game-art--storybook .status{font-size:clamp(7px,2vw,10px);padding:2px 3px;top:3px;left:3px;border-width:1px;box-shadow:0 0 0 1px #754d36}.games-panel--storybook .game-info{min-height:51px}.games-panel--storybook .game-info strong{font-size:clamp(9px,2.7vw,13px);white-space:normal;overflow:visible;text-overflow:clip}.games-panel--storybook .game-info small{font-size:clamp(8px,2.3vw,11px)}.games-panel--storybook .logo-mat{inset:21% 2% 2%}}
+
+/* Visual fidelity repair: no differently colored logo-mat, and no lower status ribbon.
+   Logos are normalized to a 16:9 canvas by games-render.js and sit under top-left badges. */
+.games-panel--storybook .scene-axisbay{background:#ffffff}
+.games-panel--storybook .scene-rust{background:#000000}
+.games-panel--storybook .scene-axisbay .logo-mat,
+.games-panel--storybook .scene-rust .logo-mat{background:transparent!important}
+.games-panel--storybook .logo-mat{inset:0!important}
+.games-panel--storybook .logo-mat .game-logo--normalized{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transform:none!important;
+}
+.games-panel--storybook .game-art--storybook .status{
+  position:absolute;
+  top:5px;
+  left:5px;
+  z-index:4;
+  background-clip:padding-box;
+}
+@media(max-width:600px){
+  .games-panel--storybook .logo-mat{inset:0!important}
+  .games-panel--storybook .game-art--storybook .status{top:3px;left:3px}
+}
