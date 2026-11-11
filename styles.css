@@ -172,3 +172,35 @@ main{grid-template-rows:minmax(0,1.05fr) minmax(0,.72fr) minmax(0,.26fr)}
   .games-panel--storybook .logo-mat{inset:0!important}
   .games-panel--storybook .game-art--storybook .status{top:3px;left:3px}
 }
+
+/* Fix 2026-11-12: precomposed card images with full-frame matching backgrounds.
+   Do not enlarge/crop logos at runtime, and never stretch the hero illustration. */
+.games-panel--storybook .scene-axisbay{background:#fff}
+.games-panel--storybook .scene-rust{background:#000}
+.games-panel--storybook .logo-mat{inset:0!important;background:transparent!important}
+.games-panel--storybook .logo-mat .game-logo{
+  position:static;
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
+  transform:none!important;
+  image-rendering:auto;
+  filter:none;
+}
+.hero{background:#64c9f4 url('assets/pixel-sky.webp') center center/cover no-repeat}
+.hero>img{object-fit:contain;object-position:center}
+@media(min-width:901px) and (max-height:850px){
+ .join{margin-top:3px;margin-bottom:3px;padding:2px 10px}
+ .join-bear span{font-size:clamp(27px,3vw,50px)}
+ .join h2{font-size:clamp(14px,1.4vw,23px)}
+ .steps{font-size:clamp(8px,.68vw,11px)}
+ .join-button{min-height:35px;max-height:82%;font-size:clamp(12px,1.25vw,20px)}
+}
+@media(max-width:600px){
+ .hero{background:#64c9f4}
+ .hero>img{object-fit:cover;object-position:center}
+}
