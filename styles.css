@@ -117,3 +117,32 @@ main{grid-template-rows:minmax(0,1.05fr) minmax(0,.72fr) minmax(0,.26fr)}
   }
   .games-panel .game-card--logo .game-info{min-height:51px}
 }
+
+
+/* Reusable, responsive pixel-fantasy game cards. Edit games-config.js only. */
+:root{--state-maintenance:#b52f47;--state-building:#bb651b;--state-active:#24864b;--state-planning:#7549a3;--state-preparing:#276ca8;--state-recruiting:#bc7b10;--state-ended:#666875}
+.games-panel--storybook .game-grid{gap:clamp(4px,.5vw,10px)}
+.games-panel--storybook .game-card--storybook{border:3px solid #bb7a3b;outline:1px solid #563423;outline-offset:-1px;box-shadow:inset 0 0 0 2px #ffecba,2px 3px 0 rgba(79,46,48,.33);background:linear-gradient(#fffbec,#ffe8c5);border-radius:8px}
+.games-panel--storybook .game-art--storybook{display:block;position:relative;padding:0;isolation:isolate;border:3px solid #fff2d0;border-bottom:2px solid #bf9666;border-radius:6px 6px 3px 3px;box-shadow:inset 0 0 0 2px #b77d3d;overflow:hidden;min-height:0}
+.games-panel--storybook .scene-axisbay{background:linear-gradient(165deg,#cceeff 0%,#f9fdff 48%,#d8efff 100%)}
+.games-panel--storybook .scene-rust{background:linear-gradient(130deg,#27170f,#0a080a 64%,#443024)}
+.games-panel--storybook .scene-request{background:radial-gradient(ellipse at 55% 55%,rgba(255,255,255,.42),transparent 58%),linear-gradient(145deg,#8aa7f3 5%,#d4b6ee 62%,#a3cafd)}
+.games-panel--storybook .scene-request:before{content:'✦';position:absolute;right:8%;top:20%;font-size:clamp(13px,2vw,27px);color:#fff8ad;text-shadow:3px 2px #b794ea}
+.games-panel--storybook .logo-mat{position:absolute;inset:22% 4% 3%;display:flex;align-items:center;justify-content:center;overflow:hidden;min-width:0;min-height:0}
+.games-panel--storybook .scene-axisbay .logo-mat{background:#fff;border-radius:2px}
+.games-panel--storybook .logo-mat .game-logo{display:block;width:100%;height:100%;object-fit:contain;object-position:center;min-width:0;min-height:0;max-width:none;max-height:none;image-rendering:auto;transform:translate(var(--logo-x,0),var(--logo-y,0)) scale(var(--logo-scale,1));filter:none}
+.games-panel--storybook .game-icon{font-size:clamp(28px,4.6vw,67px);filter:drop-shadow(3px 3px 1px #5e55a1)}
+.games-panel--storybook .game-art--storybook .status{position:absolute;z-index:3;top:5px;left:5px;right:auto;bottom:auto;width:auto;min-width:0;min-height:0;display:inline-block;border:2px solid #fff8df;border-radius:7px;padding:3px 7px;color:#fff;font-size:clamp(9px,.75vw,14px);font-weight:900;text-shadow:1px 1px 1px rgba(34,21,21,.8);box-shadow:0 0 0 2px #6d462e,2px 3px 0 rgba(45,26,34,.45);white-space:nowrap;line-height:1.1;opacity:1;letter-spacing:0}
+.games-panel--storybook .status--maintenance{background:var(--state-maintenance)}
+.games-panel--storybook .status--building{background:var(--state-building)}
+.games-panel--storybook .status--active{background:var(--state-active)}
+.games-panel--storybook .status--planning{background:var(--state-planning)}
+.games-panel--storybook .status--preparing{background:var(--state-preparing)}
+.games-panel--storybook .status--recruiting{background:var(--state-recruiting)}
+.games-panel--storybook .status--ended{background:var(--state-ended)}
+.games-panel--storybook .game-info{position:relative;min-height:clamp(37px,5.7vh,70px);background:linear-gradient(#fff9e9,#fce7c7);gap:3px;padding:4px 2px}
+.games-panel--storybook .game-info:before{content:'';display:block;position:absolute;top:0;left:20%;right:20%;height:1px;background:#e0a555}
+.games-panel--storybook .game-info strong{font-size:clamp(10px,1.03vw,18px);line-height:1.17;letter-spacing:-.04em}
+.games-panel--storybook .game-info small{font-size:clamp(8px,.71vw,13px);line-height:1.17}
+@media(max-width:900px){.games-panel--storybook .game-info strong{font-size:clamp(11px,2vw,18px)}.games-panel--storybook .game-info small{font-size:clamp(9px,1.5vw,13px)}}
+@media(max-width:600px){.games-panel--storybook .game-grid{gap:5px}.games-panel--storybook .game-art--storybook .status{font-size:clamp(7px,2vw,10px);padding:2px 3px;top:3px;left:3px;border-width:1px;box-shadow:0 0 0 1px #754d36}.games-panel--storybook .game-info{min-height:51px}.games-panel--storybook .game-info strong{font-size:clamp(9px,2.7vw,13px);white-space:normal;overflow:visible;text-overflow:clip}.games-panel--storybook .game-info small{font-size:clamp(8px,2.3vw,11px)}.games-panel--storybook .logo-mat{inset:21% 2% 2%}}

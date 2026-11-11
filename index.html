@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#29204a"><meta name="description" content="KUMAGateGamesは、みんなでいろいろなゲームを楽しむマルチゲームコミュニティ。次は何して遊ぼう？">
 <meta property="og:title" content="KUMAGateGames｜次は何して遊ぼう？"><meta property="og:type" content="website"><meta property="og:image" content="https://kumagate.games/assets/logo.webp">
 <title>KUMAGateGames｜次は何して遊ぼう？</title>
-<link rel="icon" href="assets/favicon.png" type="image/png"><link rel="stylesheet" href="styles.css"><script src="main.js" defer></script>
+<link rel="icon" href="assets/favicon.png" type="image/png"><link rel="stylesheet" href="styles.css"><script src="main.js" defer></script><script src="games-config.js" defer></script><script src="games-render.js" defer></script>
 </head>
 <body>
 <a href="#hero" class="skip">メインコンテンツへ</a>
@@ -27,12 +27,21 @@
 <a class="hotspot hotspot-feature-three" href="about.html" aria-label="ゲーム仲間募集と交流について詳しく見る"></a>
 </section>
 <div class="information" aria-label="ゲームと最新情報">
-<section id="games" class="rpg-panel games-panel">
+<section id="games" class="rpg-panel games-panel games-panel--storybook">
 <h2 class="panel-heading"><span>🎮 開催中・開催予定のゲーム</span><span class="twinkle">✦</span></h2>
-<div class="game-grid">
-<article class="game-card game-card--logo"><div class="game-art game-art--logo axisbay-panel"><div class="game-logo-frame"><img src="assets/axisbay-logo.webp" alt="AxisBayのロゴ"></div><span class="status status--maintenance">メンテナンス中</span></div><div class="game-info"><strong>FIVEM・AxisBay</strong><small>現在メンテナンス中</small></div></article>
-<article class="game-card game-card--logo"><div class="game-art game-art--logo rust-panel"><div class="game-logo-frame"><img src="assets/murakuma-rust.webp" alt="MURAKUMA Rustのロゴ"></div><span class="status status--building">作成中</span></div><div class="game-info"><strong>MURAKUMA Rust</strong><small>現在サーバー作成中</small></div></article>
-<article class="game-card"><div class="game-art muted"><span class="controller">🎮</span><span class="status gold">募集中</span></div><div class="game-info"><strong>次に遊びたいゲーム</strong><small>みんなのリクエストから</small></div></article>
+<div class="game-grid" id="game-grid">
+  <article class="game-card game-card--storybook" data-game-card="0">
+    <div class="game-art game-art--storybook scene-axisbay"><div class="logo-mat"><img class="game-logo" src="assets/axisbay-logo.webp" alt="AxisBayのロゴ"></div><span class="status status--maintenance">メンテナンス中</span></div>
+    <div class="game-info"><strong>FIVEM・AxisBay</strong><small>現在メンテナンス中</small></div>
+  </article>
+  <article class="game-card game-card--storybook" data-game-card="1">
+    <div class="game-art game-art--storybook scene-rust"><div class="logo-mat"><img class="game-logo" src="assets/murakuma-rust.webp" alt="MURAKUMA Rustのロゴ"></div><span class="status status--building">作成中</span></div>
+    <div class="game-info"><strong>MURAKUMA Rust</strong><small>現在サーバー作成中</small></div>
+  </article>
+  <article class="game-card game-card--storybook" data-game-card="2">
+    <div class="game-art game-art--storybook scene-request"><div class="logo-mat"><span class="game-icon">🎮</span></div><span class="status status--recruiting">募集中</span></div>
+    <div class="game-info"><strong>次に遊びたいゲーム</strong><small>みんなのリクエストから</small></div>
+  </article>
 </div>
 <p class="panel-footnote">※掲載画像はイメージです。現在の開催状況は正式告知をご確認ください。</p>
 </section>
