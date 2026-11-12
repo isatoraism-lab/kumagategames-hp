@@ -2,66 +2,97 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#29204a"><meta name="description" content="KUMAGateGamesは、みんなでいろいろなゲームを楽しむマルチゲームコミュニティ。次は何して遊ぼう？">
+<meta name="theme-color" content="#2c2a59"><meta name="description" content="KUMAGateGamesは、みんなでいろいろなゲームを楽しむマルチゲームコミュニティ。次は何して遊ぼう？">
 <meta property="og:title" content="KUMAGateGames｜次は何して遊ぼう？"><meta property="og:type" content="website"><meta property="og:image" content="https://kumagate.games/assets/logo.webp">
 <title>KUMAGateGames｜次は何して遊ぼう？</title>
-<link rel="icon" href="assets/favicon.png" type="image/png"><link rel="stylesheet" href="styles.css"><script src="main.js" defer></script><script src="games-config.js" defer></script><script src="games-render.js" defer></script>
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800&amp;display=swap">
+<link rel="preload" as="image" href="assets/home-stage.webp" media="(min-width:901px) and (min-aspect-ratio:13/10)">
+<link rel="stylesheet" href="styles.css">
+<script src="main.js" defer></script><script src="games-config.js" defer></script><script src="games-render.js" defer></script>
 </head>
-<body>
-<a href="#hero" class="skip">メインコンテンツへ</a>
-<div class="page-shell">
+<body class="home">
+<a href="#main" class="skip">メインコンテンツへ</a>
+<!--
+  PC（横長画面）: 完成イメージの一枚絵 assets/home-stage.webp の上に、
+  リンク（透明）・ゲームカード・Xの投稿だけを重ねて表示します。
+  位置は --x/--y/--w/--h に、元画像（1672×941）のピクセル座標で書いています。
+  スマホ（縦長画面）: 同じHTMLを縦に並べたレイアウトで表示します。
+-->
+<div class="stage">
 <header class="topbar">
-<a class="brand" href="#hero" aria-label="KUMAGateGames ホーム"><span class="brand-icon">🐻</span><span>KUMA<span class="brand-gate">Gate</span><span class="brand-games">Games</span></span></a>
+<a class="brand spot" href="index.html" style="--x:40;--y:3;--w:272;--h:42"><span class="brand-icon" aria-hidden="true">🐻</span><span class="brand-text">KUMA<span class="brand-gate">Gate</span><span class="brand-games">Games</span></span></a>
 <button class="menu-toggle" aria-label="メニューを開く" aria-controls="site-menu" aria-expanded="false">☰</button>
 <nav id="site-menu" aria-label="メインナビゲーション">
-<a class="active" href="#hero">🏠 ホーム</a><a href="about.html">📖 KUMAGateGamesとは</a><a href="games.html">🎮 ゲーム・シーズン</a><a href="#archive">📦 シーズンアーカイブ</a><a href="rules.html">📜 ルール</a><a href="entry.html">🚪 エントリー</a><a href="support.html">💗 支援について</a>
+<a class="spot nav-home active" aria-current="page" href="index.html" style="--x:352;--y:3;--w:148;--h:42"><span aria-hidden="true">🏠</span><span>ホーム</span></a>
+<a class="spot" href="about.html" style="--x:515;--y:4;--w:250;--h:40"><span aria-hidden="true">📖</span><span>KUMAGateGamesとは</span></a>
+<a class="spot" href="games.html" style="--x:771;--y:4;--w:208;--h:40"><span aria-hidden="true">🎮</span><span>ゲーム・シーズン</span></a>
+<a class="spot" href="archive.html" style="--x:984;--y:4;--w:233;--h:40"><span aria-hidden="true">📦</span><span>シーズンアーカイブ</span></a>
+<a class="spot" href="rules.html" style="--x:1222;--y:4;--w:128;--h:40"><span aria-hidden="true">📜</span><span>ルール</span></a>
+<a class="spot" href="entry.html" style="--x:1355;--y:4;--w:149;--h:40"><span aria-hidden="true">🚪</span><span>エントリー</span></a>
+<a class="spot" href="support.html" style="--x:1509;--y:4;--w:158;--h:40"><span aria-hidden="true">💗</span><span>支援について</span></a>
 </nav>
 </header>
-<main>
-<section class="hero" id="hero" aria-label="KUMAGateGamesの紹介">
-<img src="assets/pixel-hero.webp" alt="クマのゲート、浮島の城、冒険の世界を描いたドット絵。シーズン制・ゲーム企画・仲間募集の紹介。" draggable="false">
 
-<!-- 背景絵に実際に描かれた3枚の案内カードだけにリンクを対応させます。 -->
-<a class="hotspot hotspot-feature-one" href="games.html" aria-label="シーズン制のゲーム企画について詳しく見る"></a>
-<a class="hotspot hotspot-feature-two" href="games.html" aria-label="ゲームリクエストについて詳しく見る"></a>
-<a class="hotspot hotspot-feature-three" href="about.html" aria-label="ゲーム仲間募集と交流について詳しく見る"></a>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<img class="hero-img" src="assets/home-hero.webp" width="1672" height="459" alt="クマのゲートと浮島の城が見えるドット絵の世界。「次は何して遊ぼう？」みんなでいろんなゲームを楽しむマルチゲームコミュニティ。" draggable="false">
+<h1 id="hero-title" class="sr-only">KUMAGateGames　次は何して遊ぼう？　みんなでいろんなゲームを楽しむマルチゲームコミュニティ</h1>
+<a class="spot hero-spot" href="games.html" style="--x:158;--y:405;--w:312;--h:95"><span>シーズン制のゲーム企画　期間限定でみんなで遊ぶ！</span></a>
+<a class="spot hero-spot" href="games.html" style="--x:485;--y:405;--w:310;--h:95"><span>ゲームのリクエスト　やりたいゲームをみんなで企画！</span></a>
+<a class="spot hero-spot" href="about.html" style="--x:812;--y:405;--w:318;--h:95"><span>ゲーム仲間と交流　イベントや配信もみんなで楽しむ！</span></a>
 </section>
-<div class="information" aria-label="ゲームと最新情報">
-<section id="games" class="rpg-panel games-panel games-panel--storybook">
-<h2 class="panel-heading"><span>🎮 開催中・開催予定のゲーム</span><span class="twinkle">✦</span></h2>
+
+<section class="panel games-panel" id="games" aria-labelledby="games-title">
+<h2 class="ribbon" id="games-title"><img src="assets/home-ribbon-games.webp" width="934" height="78" alt="開催中・開催予定のゲーム"></h2>
+<!-- 中身は games-config.js から games-render.js が作ります（下は読み込み前の初期表示） -->
 <div class="game-grid" id="game-grid">
-  <article class="game-card game-card--storybook" data-game-card="0">
-    <div class="game-art game-art--storybook scene-axisbay"><div class="logo-mat"><img class="game-logo" src="assets/axisbay-card-v2.webp" alt="AxisBayのロゴ"></div><span class="status status--maintenance">メンテナンス中</span></div>
-    <div class="game-info"><strong>FIVEM・AxisBay</strong><small>現在メンテナンス中</small></div>
-  </article>
-  <article class="game-card game-card--storybook" data-game-card="1">
-    <div class="game-art game-art--storybook scene-rust"><div class="logo-mat"><img class="game-logo" src="assets/murakuma-card-prod.webp" alt="MURAKUMA Rustのロゴ"></div><span class="status status--building">作成中</span></div>
-    <div class="game-info"><strong>MURAKUMA Rust</strong><small>現在サーバー作成中</small></div>
-  </article>
-  <article class="game-card game-card--storybook" data-game-card="2">
-    <div class="game-art game-art--storybook scene-request"><div class="logo-mat"><span class="game-icon">🎮</span></div><span class="status status--recruiting">募集中</span></div>
-    <div class="game-info"><strong>次に遊びたいゲーム</strong><small>みんなのリクエストから</small></div>
-  </article>
+<article class="game-card game-card--game scene-axisbay"><div class="game-art"><img src="assets/axisbay-card-v2.webp" alt="AxisBayのロゴ"></div><span class="status status--maintenance">メンテナンス中</span><strong class="game-title">FIVEM・AxisBay</strong></article>
+<article class="game-card game-card--game scene-rust"><div class="game-art"><img src="assets/murakuma-card-prod.webp" alt="MURAKUMA Rustのロゴ"></div><span class="status status--building">作成中</span><strong class="game-title">MURAKUMA Rust</strong></article>
+<article class="game-card game-card--request scene-request"><div class="req-top"><span class="req-icon" aria-hidden="true"></span><strong class="req-title">ゲーム募集中</strong></div><p class="req-text">みんなのリクエストで
+次のゲームを決定！</p></article>
 </div>
-<p class="panel-footnote">※掲載画像はイメージです。現在の開催状況は正式告知をご確認ください。</p>
 </section>
-<section class="rpg-panel x-panel" id="news">
-<h2 class="panel-heading"><span>𝕏 最新情報</span><span class="twinkle">✦</span></h2>
-<div id="x-feed" class="x-feed"><div class="x-preview"><div class="x-avatar">🐻</div><div><strong>公式Xからのお知らせ</strong><p>Xアカウントを設定すると、こちらに最新の投稿を表示します。</p><span class="x-muted">現在、連携準備中です</span></div></div></div>
-<a id="x-link" class="mini-link" hidden target="_blank" rel="noopener noreferrer">公式Xを見る ↗</a>
-</section>
-<section class="rpg-panel archive-panel" id="archive">
-<h2 class="panel-heading"><span>📚 シーズンアーカイブ</span><span class="twinkle">✦</span></h2>
-<div class="archive-layout"><div class="archive-image-crop" role="img" aria-label="仲間たちが夕日に向かう8Bit風の冒険風景"></div><p>過去の開催記録・イベント・思い出をまとめて紹介します。</p></div>
-<a class="rpg-link" href="archive.html">アーカイブを見る <span>❯</span></a>
-</section>
+
+<section class="panel x-panel" id="news" aria-labelledby="x-title">
+<h2 class="ribbon" id="x-title"><img src="assets/home-ribbon-x.webp" width="880" height="80" alt="X（旧Twitter）最新情報"></h2>
+<div class="x-card">
+<a class="x-head spot" id="x-link" href="https://x.com/KumaGateGames" target="_blank" rel="noopener noreferrer" style="--x:783;--y:568;--w:418;--h:43">
+<span class="x-logo" aria-hidden="true">𝕏</span><span class="x-handle">@KUMAGateGames</span><span class="x-follow">フォローする</span><span class="sr-only">（公式Xを新しいタブで開く）</span>
+</a>
+<div class="x-body" id="x-feed" style="--x:784;--y:612;--w:416;--h:115">
+<div class="x-fallback">
+<img class="x-avatar" src="assets/home-x-avatar.webp" width="100" height="94" alt="">
+<div><strong>KUMAGateGames</strong><span class="x-sub">@KUMAGateGames</span>
+<p>KUMAGateGames 公式アカウントです！<br>これからのゲーム開催情報やイベントのお知らせなどを発信していきます！🐻✨</p></div>
 </div>
-<section class="join" aria-label="KUMAGateGamesへの参加">
-<div class="join-bear" aria-hidden="true"><span>🐻</span></div>
-<div class="join-content"><h2>KUMAGateGamesへ参加しよう！</h2><div class="steps"><span>📖 ルール確認</span><b>➜</b><span>🎮 Discordに参加</span><b>➜</b><span>📝 エントリー申請</span><b>➜</b><span>👥 審査後に参加！</span></div></div>
-<a class="join-button" href="entry.html"><span>🎮</span> 参加の流れを見る <span>❯</span></a>
+</div>
+</div>
+</section>
+
+<section class="panel archive-panel" id="archive" aria-labelledby="archive-title">
+<h2 class="ribbon" id="archive-title"><img src="assets/home-ribbon-archive.webp" width="726" height="76" alt="シーズンアーカイブ"></h2>
+<a class="archive-link spot" href="archive.html" style="--x:1246;--y:565;--w:360;--h:158">
+<img class="archive-thumb" src="assets/home-archive-thumb.webp" width="160" height="111" alt="">
+<span class="archive-text">過去の開催記録・イベント・思い出をまとめたアーカイブです。</span>
+<span class="archive-button">アーカイブを見る ❯</span>
+</a>
+</section>
+
+<section class="join" aria-labelledby="join-title">
+<img class="join-bear" src="assets/home-join-bear.webp" width="472" height="398" alt="">
+<h2 class="join-title" id="join-title"><span>KUMAGateGamesへ</span><span>参加しよう！</span></h2>
+<ol class="join-steps">
+<li><a class="spot" href="rules.html" style="--x:366;--y:818;--w:138;--h:76"><span aria-hidden="true">📖</span><span>ルールを確認</span></a></li>
+<li><a class="spot" href="entry.html" style="--x:564;--y:818;--w:140;--h:76"><span aria-hidden="true">💬</span><span>Discordに参加</span></a></li>
+<li><a class="spot" href="entry.html" style="--x:756;--y:818;--w:124;--h:76"><span aria-hidden="true">📝</span><span>エントリー申請</span></a></li>
+<li><a class="spot" href="entry.html" style="--x:960;--y:818;--w:140;--h:76"><span aria-hidden="true">👥</span><span>審査後に参加！</span></a></li>
+</ol>
+<a class="join-button spot" href="entry.html" style="--x:1150;--y:786;--w:380;--h:98"><span>参加の流れを見る ❯</span></a>
 </section>
 </main>
-<footer><span>© 2026 KUMAGateGames</span><span>🐾 次は何して遊ぼう？</span></footer>
 </div>
-</body></html>
+<footer class="footer"><span>© 2026 KUMAGateGames</span><span>🐾 次は何して遊ぼう？</span></footer>
+</body>
+</html>
