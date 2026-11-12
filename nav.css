@@ -1,0 +1,76 @@
+/* =========================================================
+   共通ヘッダー（ホーム以外のページ）
+   ホームの絵に描かれたメニューバーと同じ見た目・同じ位置になるように作っています。
+   ・アイコンとロゴは assets/nav/ の画像（ホームの絵から切り出したもの）
+   ・位置は「ホームの絵の座標」× --u。--u の計算はホーム(styles.css)と同じ式
+   ・現在のページは aria-current="page" class="active" の項目が青いボタンになります
+   ========================================================= */
+.gnav{position:sticky;top:0;z-index:40;container-type:inline-size;overflow-x:clip;
+  font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN','Yu Gothic',Meiryo,sans-serif;
+  background:linear-gradient(#22245a,#25275c);
+  box-shadow:inset 0 -2px 0 #000437,inset 0 -3px 0 #1c2963,inset 0 -4px 0 #4557a3,0 2px 6px rgba(0,0,30,.35)}
+.gnav a{text-decoration:none}
+.gnav img{display:block}
+
+/* ---------- PC：ホームの絵と同じ配置 ---------- */
+@media (min-width:901px){
+  .gnav-inner{
+    --u:max(min(calc(100cqw / 1460),calc(100vh / 821)),min(calc(100cqw / 1916),calc(100vh / 790)));
+    position:relative;
+    width:calc(var(--u) * 1460);height:calc(var(--u) * 41);
+    margin-left:clamp(min(calc(100cqw - var(--u) * 1645),calc((100cqw - var(--u) * 1374) / 2)),calc((100cqw - var(--u) * 1460) / 2),calc(var(--u) * 271));
+    /* 区切り線 */
+    --sep:linear-gradient(transparent,#625e7b 22%,#625e7b 78%,transparent);
+    background:
+      var(--sep) calc(var(--u) * 631) calc(var(--u) * 5)/calc(var(--u) * 2) calc(var(--u) * 27) no-repeat,
+      var(--sep) calc(var(--u) * 823) calc(var(--u) * 5)/calc(var(--u) * 2) calc(var(--u) * 27) no-repeat,
+      var(--sep) calc(var(--u) * 1036) calc(var(--u) * 5)/calc(var(--u) * 2) calc(var(--u) * 27) no-repeat,
+      var(--sep) calc(var(--u) * 1161) calc(var(--u) * 5)/calc(var(--u) * 2) calc(var(--u) * 27) no-repeat,
+      var(--sep) calc(var(--u) * 1308) calc(var(--u) * 5)/calc(var(--u) * 2) calc(var(--u) * 27) no-repeat;
+  }
+  .gnav-brand{position:absolute;left:calc(var(--u) * 1);top:calc(var(--u) * 2);width:calc(var(--u) * 232);height:calc(var(--u) * 35);border-radius:calc(var(--u) * 6)}
+  .gnav-brand img{width:100%;height:100%}
+  .gnav .menu-toggle{display:none}
+  .gnav nav{display:block}
+  .gnav nav a{
+    position:absolute;top:0;height:calc(var(--u) * 39);left:calc(var(--u) * var(--l));
+    display:flex;align-items:center;gap:calc(var(--u) * 8);
+    padding:0 calc(var(--u) * 13) 0 calc(var(--u) * var(--pl,14));
+    border:calc(var(--u) * 2) solid transparent;border-radius:calc(var(--u) * 5);
+    color:#f1eef7;font-weight:700;font-size:calc(var(--u) * 15);letter-spacing:-.02em;white-space:nowrap;line-height:1;
+    text-shadow:0 0 calc(var(--u) * 1.2) #0b0833,calc(var(--u) * 1) calc(var(--u) * 1) 0 #0b0833;
+    transition:background-color .15s;
+  }
+  .gnav nav a span{transform:translateY(calc(var(--u) * -1.5))}
+  .gnav nav img{width:calc(var(--u) * var(--iw));height:auto;flex-shrink:0}
+  .gnav nav a:nth-child(1){--l:260;--pl:19}
+  .gnav nav a:nth-child(2){--l:395}
+  .gnav nav a:nth-child(3){--l:637}
+  .gnav nav a:nth-child(4){--l:831}
+  .gnav nav a:nth-child(5){--l:1044}
+  .gnav nav a:nth-child(6){--l:1167}
+  .gnav nav a:nth-child(7){--l:1315;padding-right:calc(var(--u) * 6)}
+  .gnav nav a:hover,.gnav nav a:focus-visible,.gnav-brand:hover,.gnav-brand:focus-visible{background-color:rgba(255,255,255,.1);outline:0}
+  .gnav nav a:focus-visible,.gnav-brand:focus-visible{box-shadow:0 0 0 calc(var(--u) * 2) #ffe7a2}
+  /* 現在のページ：ホームの「ホーム」ボタンと同じ青いボタン */
+  .gnav nav a.active{
+    border-color:#fdf8e2;
+    background:linear-gradient(#4383fc,#0a71fa 32%,#007afc 62%,#0b87fd 82%,#64a0fa);
+    box-shadow:0 0 0 calc(var(--u) * 1) #0e0d49,0 calc(var(--u) * 1.5) calc(var(--u) * 3) rgba(255,214,80,.8),inset 0 0 0 calc(var(--u) * 1) rgba(255,255,255,.28);
+  }
+  .gnav nav a.active:hover{background-color:transparent;filter:brightness(1.05)}
+}
+
+/* ---------- スマホ・タブレット：メニューボタン ---------- */
+@media (max-width:900px){
+  .gnav-inner{display:flex;align-items:center;gap:10px;height:56px;padding:0 12px}
+  .gnav-brand img{height:31px;width:auto}
+  .gnav .menu-toggle{display:block;margin-left:auto;background:#433672;border:2px solid #e7b968;color:#fff;font-size:22px;line-height:1;padding:6px 11px;border-radius:6px;cursor:pointer}
+  .gnav nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:2px;padding:8px;background:#22245a;box-shadow:0 4px 0 #4557a3,0 6px 10px rgba(0,0,30,.4)}
+  .gnav nav.open{display:flex}
+  .gnav nav a{display:flex;align-items:center;gap:12px;padding:9px 12px;color:#fff;font-size:15px;font-weight:800;border:2px solid transparent;border-radius:8px}
+  .gnav nav img{width:auto;height:24px;flex-shrink:0}
+  .gnav nav a:hover{background:rgba(255,255,255,.1)}
+  .gnav nav a.active{border-color:#fdf8e2;background:linear-gradient(#4383fc,#0a71fa 40%,#0b87fd)}
+}
+@media (prefers-reduced-motion:reduce){.gnav nav a{transition:none}}

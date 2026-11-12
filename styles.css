@@ -35,15 +35,16 @@ img{max-width:100%}
 .skip:focus{top:1rem}
 
 /* ---------- ナビゲーション（スマホ） ---------- */
-.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;height:56px;padding:0 12px;background:linear-gradient(#2b295b,#302c5d);border-bottom:3px solid #4c55a8;box-shadow:0 3px 0 #030124}
-.brand{display:flex;align-items:center;gap:6px;color:#fff;text-decoration:none;font-size:20px;font-weight:800;letter-spacing:-.02em;text-shadow:2px 2px 0 #7a3b22}
-.brand-icon{font-size:1.3em}.brand-gate{color:#b7ffe0}.brand-games{color:#badaff}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;height:56px;padding:0 12px;background:linear-gradient(#22245a,#25275c);box-shadow:inset 0 -2px 0 #000437,inset 0 -3px 0 #1c2963,inset 0 -4px 0 #4557a3,0 2px 6px rgba(0,0,30,.35)}
+.brand{display:block;line-height:0}
+.brand img{display:block;height:31px;width:auto}
 .menu-toggle{margin-left:auto;background:#433672;border:2px solid #e7b968;color:#fff;font-size:22px;line-height:1;padding:6px 11px;border-radius:6px;cursor:pointer}
-#site-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:8px;background:#292042;box-shadow:0 5px 0 #a97e33}
+#site-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:2px;padding:8px;background:#22245a;box-shadow:0 4px 0 #4557a3,0 6px 10px rgba(0,0,30,.4)}
 #site-menu.open{display:flex}
-#site-menu a{display:flex;gap:10px;align-items:center;padding:12px;color:#fff;text-decoration:none;font-size:15px;border-radius:8px}
-#site-menu a:hover{background:#3d3366}
-#site-menu a.active{background:linear-gradient(#4b8fe4,#1856bc);border:2px solid #fadd81}
+#site-menu a{display:flex;gap:12px;align-items:center;padding:9px 12px;color:#fff;text-decoration:none;font-size:15px;font-weight:800;border:2px solid transparent;border-radius:8px}
+#site-menu a img{display:block;width:auto;height:24px;flex-shrink:0}
+#site-menu a:hover{background:rgba(255,255,255,.1)}
+#site-menu a.active{border-color:#fdf8e2;background:linear-gradient(#4383fc,#0a71fa 40%,#0b87fd)}
 
 /* ---------- ヒーロー（スマホ） ---------- */
 .hero{--cx:0;--cw:1460;position:relative;aspect-ratio:1460/377;overflow:hidden}
