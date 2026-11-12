@@ -204,3 +204,36 @@ main{grid-template-rows:minmax(0,1.05fr) minmax(0,.72fr) minmax(0,.26fr)}
  .hero{background:#64c9f4}
  .hero>img{object-fit:cover;object-position:center}
 }
+
+
+/* Hero artwork alignment (2026-11-12).
+   Make the hero box match the entire 1672x465 illustration.
+   The existing hotspot percentages are measured against that exact artwork.
+   Do not letterbox (contain in the wrong box), stretch, or crop on desktop. */
+@media (min-width:901px){
+  .page-shell{
+    height:auto;
+    min-height:100vh;
+    min-height:100dvh;
+    grid-template-rows:clamp(46px,5.6vh,64px) minmax(min-content,1fr) 22px;
+    overflow:visible;
+  }
+  main{
+    grid-template-rows:max-content minmax(190px,1fr) minmax(68px,.26fr);
+    overflow:visible;
+  }
+  .hero{
+    width:100%;
+    height:auto;
+    min-height:0;
+    aspect-ratio:1672 / 465;
+    background:transparent;
+  }
+  .hero>img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+  }
+}
