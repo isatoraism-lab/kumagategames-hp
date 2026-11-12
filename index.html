@@ -8,16 +8,17 @@
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800&amp;display=swap">
-<link rel="preload" as="image" href="assets/home-stage.webp" media="(min-width:901px) and (min-aspect-ratio:13/10)">
+<link rel="preload" as="image" href="assets/home-stage-wide.webp" media="(min-width:901px) and (min-aspect-ratio:13/10)">
 <link rel="stylesheet" href="styles.css">
 <script src="main.js" defer></script><script src="games-config.js" defer></script><script src="games-render.js" defer></script>
 </head>
 <body class="home">
 <a href="#main" class="skip">メインコンテンツへ</a>
 <!--
-  PC（横長画面）: 完成イメージの一枚絵 assets/home-stage.webp の上に、
+  PC（横長画面）: 横長の一枚絵 assets/home-stage-wide.webp（2560×1080）の上に、
   リンク（透明）・ゲームカード・Xの投稿だけを重ねて表示します。
-  位置は --x/--y/--w/--h に、元画像（1672×941）のピクセル座標で書いています。
+  位置は --x/--y/--w/--h に、絵の中央部分を1672×941とした時のピクセル座標で書いています。
+  （横長の絵の座標 = 320 + x × 1920/1672、y × 1080/941）
   スマホ（縦長画面）: 同じHTMLを縦に並べたレイアウトで表示します。
 -->
 <div class="stage">

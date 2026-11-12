@@ -3,8 +3,8 @@
    2026-11 完成イメージ準拠版
 
    ・PC（横幅901px以上の横長画面）
-     完成イメージ assets/home-stage.webp（1672×941）を16:9の一枚絵として
-     画面いっぱいに表示し、その上にリンク・ゲームカード・Xの投稿を重ねます。
+     横長の一枚絵 assets/home-stage-wide.webp（2560×1080）を高さいっぱいに表示し、
+     中央の16:9部分の上にリンク・ゲームカード・Xの投稿を重ねます。
      位置はHTMLの --x/--y/--w/--h（元画像のピクセル座標）× --u で決まります。
    ・スマホ・縦長画面
      同じHTMLを縦に並べ、スクロールで見るレイアウトになります。
@@ -27,7 +27,7 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;min-height:100vh;font-family:var(--font);font-weight:700;color:#2a2038;background:#2e6a3e}
-body::before{content:'';position:fixed;inset:-60px;z-index:-1;background:#2e6a3e url('assets/home-stage.webp') center/cover no-repeat;filter:blur(22px) brightness(.6) saturate(1.1)}
+body::before{content:'';position:fixed;inset:-60px;z-index:-1;background:#2e6a3e url('assets/home-bg-blur.webp') center/cover no-repeat;filter:blur(22px) brightness(.6) saturate(1.1)}
 img{max-width:100%}
 .sr-only,.hero-spot>span{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .skip{position:fixed;left:1rem;top:-4rem;z-index:100;background:#fff;color:#21183d;padding:.6rem 1rem;border-radius:6px}
@@ -134,25 +134,22 @@ main{display:block}
 @media (min-width:901px) and (min-aspect-ratio:13/10){
   html,body{height:100%;overflow:hidden}
   body{background:#1f3b2b}
+  body::before{z-index:-3}
   .stage{
     --u:min(calc(100vw / 1672),calc(100vh / 941));
     position:relative;margin:0 auto;
     width:calc(var(--u) * 1672);height:calc(var(--u) * 941);
-    background:url('assets/home-stage.webp') 0 0/100% 100% no-repeat;
   }
   @supports (height:100dvh){.stage{--u:min(calc(100vw / 1672),calc(100dvh / 941))}}
-  /* 画面が16:9より横長のとき：左右の余白にメニューバーと絵の端（鏡写し）を延長 */
-  .stage{box-shadow:0 0 calc(var(--u) * 24) rgba(0,0,0,.35)}
-  .stage::before,.stage::after{content:'';position:absolute;top:0;z-index:-1;width:50vw;height:100%;
-    --navbar:linear-gradient(#2b295b 0%,#302c5d 88%,#3a3c79 91%,#4c55a8 94%,#222163 97%,#030124 100%)}
-  .stage::before{right:100%;background:
-    var(--navbar) 0 0/100% calc(var(--u) * 49) no-repeat,
-    linear-gradient(to left,rgba(8,18,30,.18),rgba(8,18,30,.6) 70%) 0 0/100% 100% no-repeat,
-    url('assets/home-side-left.webp') right 0/calc(var(--u) * 120) 100% repeat-x}
-  .stage::after{left:100%;background:
-    var(--navbar) 0 0/100% calc(var(--u) * 49) no-repeat,
-    linear-gradient(to right,rgba(8,18,30,.18),rgba(8,18,30,.6) 70%) 0 0/100% 100% no-repeat,
-    url('assets/home-side-right.webp') left 0/calc(var(--u) * 120) 100% repeat-x}
+  /* 横長の絵（2560×1080）。中央の1920×1080が上の座標系（1672×941）にぴったり重なる。
+     画面が16:9より横長なほど、左右の景色が多く見える */
+  .stage::before{content:'';position:absolute;z-index:-1;top:0;left:50%;
+    width:calc(var(--u) * 2229.333);height:100%;transform:translateX(-50%);
+    background:url('assets/home-stage-wide.webp') 0 0/100% 100% no-repeat}
+  /* 絵よりさらに横長の画面では、メニューバーの帯だけ端まで延長 */
+  .stage::after{content:'';position:absolute;z-index:-2;top:0;left:50%;width:100vw;transform:translateX(-50%);
+    height:calc(var(--u) * 49);
+    background:linear-gradient(#2b295b 0%,#302c5d 88%,#3a3c79 91%,#4c55a8 94%,#222163 97%,#030124 100%)}
 
   /* 絵に描かれている部分はHTML側を隠す（読み上げ用の文字は残す） */
   .topbar,main,.panel,.join,.x-card,.game-grid,#site-menu,.join-steps,.join-steps li{position:static;display:block;height:auto;margin:0;padding:0;border:0;outline:0;background:none;box-shadow:none;list-style:none}
