@@ -3,9 +3,10 @@
    2026-11 完成イメージ準拠版
 
    ・PC（横幅901px以上の横長画面）
-     横長の一枚絵 assets/home-stage-wide.webp（2560×1080）を高さいっぱいに表示し、
-     中央の16:9部分の上にリンク・ゲームカード・Xの投稿を重ねます。
-     位置はHTMLの --x/--y/--w/--h（元画像のピクセル座標）× --u で決まります。
+     横長の一枚絵 assets/home-stage-wide.webp（1916×821）を高さいっぱいに表示し、
+     メニュー〜パネルが収まる範囲（絵の x=271〜1731、1460×821 ≒ 16:9）を
+     「ステージ」として画面中央に置き、その上にリンク・カード・Xの投稿を重ねます。
+     位置はHTMLの --x/--y/--w/--h（ステージ内のピクセル座標）× --u で決まります。
    ・スマホ・縦長画面
      同じHTMLを縦に並べ、スクロールで見るレイアウトになります。
    ========================================================= */
@@ -27,7 +28,7 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;min-height:100vh;font-family:var(--font);font-weight:700;color:#2a2038;background:#2e6a3e}
-body::before{content:'';position:fixed;inset:-60px;z-index:-1;background:#2e6a3e url('assets/home-bg-blur.webp') center/cover no-repeat;filter:blur(22px) brightness(.6) saturate(1.1)}
+body::before{content:'';position:fixed;inset:-60px;z-index:-1;background:#2e6a3e url('assets/home-bg-blur.webp?v=2') center/cover no-repeat;filter:blur(22px) brightness(.6) saturate(1.1)}
 img{max-width:100%}
 .sr-only,.hero-spot>span{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .skip{position:fixed;left:1rem;top:-4rem;z-index:100;background:#fff;color:#21183d;padding:.6rem 1rem;border-radius:6px}
@@ -45,11 +46,11 @@ img{max-width:100%}
 #site-menu a.active{background:linear-gradient(#4b8fe4,#1856bc);border:2px solid #fadd81}
 
 /* ---------- ヒーロー（スマホ） ---------- */
-.hero{--cx:0;--cw:1672;position:relative;aspect-ratio:1672/459;overflow:hidden}
+.hero{--cx:0;--cw:1460;position:relative;aspect-ratio:1460/377;overflow:hidden}
 .hero-img{display:block;width:100%;height:100%;object-fit:cover}
-.hero-spot{position:absolute;left:calc(100% * (var(--x) - var(--cx)) / var(--cw));top:calc(100% * (var(--y) - 49) / 459);width:calc(100% * var(--w) / var(--cw));height:calc(100% * var(--h) / 459);border-radius:6px}
+.hero-spot{position:absolute;left:calc(100% * (var(--x) - var(--cx)) / var(--cw));top:calc(100% * (var(--y) - 39) / 377);width:calc(100% * var(--w) / var(--cw));height:calc(100% * var(--h) / 377);border-radius:6px}
 .hero-spot:focus-visible{outline:3px solid #ffe7a2}
-@media(max-width:600px){.hero{--cx:150;--cw:1150;aspect-ratio:1150/459}.hero-img{object-position:28.7% 50%}}
+@media(max-width:600px){.hero{--cx:150;--cw:950;aspect-ratio:950/377}.hero-img{object-position:29.4% 50%}}
 
 /* ---------- 共通パネル（スマホ） ---------- */
 main{display:block}
@@ -136,20 +137,23 @@ main{display:block}
   body{background:#1f3b2b}
   body::before{z-index:-3}
   .stage{
-    --u:min(calc(100vw / 1672),calc(100vh / 941));
-    position:relative;margin:0 auto;
-    width:calc(var(--u) * 1672);height:calc(var(--u) * 941);
+    /* 基本は1460×821のステージが画面に収まる大きさ。
+       画面が絵（1916×821）より横長なら、絵を横幅いっぱいまで広げる（下の花畑が少し切れるだけ） */
+    --u:max(min(calc(100vw / 1460),calc(100vh / 821)),min(calc(100vw / 1916),calc(100vh / 790)));
+    position:relative;
+    width:calc(var(--u) * 1460);height:calc(var(--u) * 821);
+    /* 中央に置く。ただし絵が画面の端まで届くように、絵のはみ出す範囲で左右に寄せる */
+    margin-left:clamp(min(calc(100vw - var(--u) * 1645),calc((100vw - var(--u) * 1374) / 2)),calc((100vw - var(--u) * 1460) / 2),calc(var(--u) * 271));
   }
-  @supports (height:100dvh){.stage{--u:min(calc(100vw / 1672),calc(100dvh / 941))}}
-  /* 横長の絵（2560×1080）。中央の1920×1080が上の座標系（1672×941）にぴったり重なる。
-     画面が16:9より横長なほど、左右の景色が多く見える */
-  .stage::before{content:'';position:absolute;z-index:-1;top:0;left:50%;
-    width:calc(var(--u) * 2229.333);height:100%;transform:translateX(-50%);
-    background:url('assets/home-stage-wide.webp') 0 0/100% 100% no-repeat}
+  @supports (height:100dvh){.stage{--u:max(min(calc(100vw / 1460),calc(100dvh / 821)),min(calc(100vw / 1916),calc(100dvh / 790)))}}
+  /* 横長の絵（1916×821）。ステージの左に271、右に185の景色が続く */
+  .stage::before{content:'';position:absolute;z-index:-1;top:0;left:calc(var(--u) * -271);
+    width:calc(var(--u) * 1916);height:100%;
+    background:url('assets/home-stage-wide.webp?v=2') 0 0/100% 100% no-repeat}
   /* 絵よりさらに横長の画面では、メニューバーの帯だけ端まで延長 */
-  .stage::after{content:'';position:absolute;z-index:-2;top:0;left:50%;width:100vw;transform:translateX(-50%);
-    height:calc(var(--u) * 49);
-    background:linear-gradient(#2b295b 0%,#302c5d 88%,#3a3c79 91%,#4c55a8 94%,#222163 97%,#030124 100%)}
+  .stage::after{content:'';position:absolute;z-index:-2;top:0;left:-200vw;width:500vw;
+    height:calc(var(--u) * 39);
+    background:linear-gradient(#232558 0%,#252763 85%,#4557a3 90%,#1c2963 95%,#000437 100%)}
 
   /* 絵に描かれている部分はHTML側を隠す（読み上げ用の文字は残す） */
   .topbar,main,.panel,.join,.x-card,.game-grid,#site-menu,.join-steps,.join-steps li{position:static;display:block;height:auto;margin:0;padding:0;border:0;outline:0;background:none;box-shadow:none;list-style:none}
@@ -176,22 +180,22 @@ main{display:block}
   .game-card{position:absolute;display:block;padding:0;
     left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));
     width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u));
-    border:calc(var(--u) * 2) solid var(--card-border);border-radius:calc(var(--u) * 7);
+    border:calc(var(--u) * 1.6) solid var(--card-border);border-radius:calc(var(--u) * 6);
     box-shadow:inset 0 0 0 calc(var(--u) * 1) #fff,0 calc(var(--u) * 2) 0 rgba(90,80,140,.22)}
-  .game-card:nth-child(1){--x:84;--y:569;--w:219;--h:160}
-  .game-card:nth-child(2){--x:317;--y:569;--w:218;--h:160}
-  .game-card:nth-child(3){--x:549;--y:569;--w:185;--h:150}
+  .game-card:nth-child(1){--x:53;--y:471;--w:177;--h:129}
+  .game-card:nth-child(2){--x:242;--y:471;--w:179;--h:129}
+  .game-card:nth-child(3){--x:433;--y:470;--w:154;--h:121}
   .game-card:nth-child(n+4){display:none}
-  .game-art{position:absolute;aspect-ratio:auto;left:calc(var(--u) * 4);right:calc(var(--u) * 4);top:calc(var(--u) * 3);height:calc((var(--h) - 38) * var(--u));border-radius:calc(var(--u) * 5)}
-  .status{position:absolute;margin:0;left:50%;transform:translateX(-50%);top:calc((var(--h) - 54) * var(--u));height:calc(var(--u) * 25);min-width:calc(var(--u) * 90);padding:0 calc(var(--u) * 12);font-size:calc(var(--u) * 13);border-width:calc(var(--u) * 2.5)}
-  .game-title{position:absolute;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;left:calc(var(--u) * 6);right:calc(var(--u) * 6);top:calc((var(--h) - 29) * var(--u));font-size:calc(var(--u) * 16);line-height:calc(var(--u) * 22)}
-  .req-top{position:absolute;aspect-ratio:auto;justify-content:flex-start;left:calc(var(--u) * 3);right:calc(var(--u) * 3);top:calc(var(--u) * 4);height:calc((var(--h) - 59) * var(--u));padding-top:calc(var(--u) * 9);gap:calc(var(--u) * 10);border-radius:calc(var(--u) * 5)}
-  .req-icon{width:calc(var(--u) * 68);height:calc(var(--u) * 40);aspect-ratio:auto}
-  .req-title{font-size:calc(var(--u) * 21);line-height:1.2}
-  .req-text{position:absolute;margin:0;left:0;right:0;top:calc((var(--h) - 46) * var(--u));font-size:calc(var(--u) * 12.5);line-height:1.4}
+  .game-art{position:absolute;aspect-ratio:auto;left:calc(var(--u) * 3);right:calc(var(--u) * 3);top:calc(var(--u) * 2.5);height:calc((var(--h) - 31) * var(--u));border-radius:calc(var(--u) * 4)}
+  .status{position:absolute;margin:0;left:50%;transform:translateX(-50%);top:calc((var(--h) - 45) * var(--u));height:calc(var(--u) * 21);min-width:calc(var(--u) * 74);padding:0 calc(var(--u) * 10);font-size:calc(var(--u) * 11);border-width:calc(var(--u) * 2)}
+  .game-title{position:absolute;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;left:calc(var(--u) * 5);right:calc(var(--u) * 5);top:calc((var(--h) - 22) * var(--u));font-size:calc(var(--u) * 13);line-height:calc(var(--u) * 18)}
+  .req-top{position:absolute;aspect-ratio:auto;justify-content:flex-start;left:calc(var(--u) * 2.5);right:calc(var(--u) * 2.5);top:calc(var(--u) * 3);height:calc((var(--h) - 47) * var(--u));padding-top:calc(var(--u) * 6);gap:calc(var(--u) * 9);border-radius:calc(var(--u) * 4)}
+  .req-icon{width:calc(var(--u) * 54);height:calc(var(--u) * 32);aspect-ratio:auto}
+  .req-title{font-size:calc(var(--u) * 17);line-height:1.2}
+  .req-text{position:absolute;margin:0;left:0;right:0;top:calc((var(--h) - 35) * var(--u));font-size:calc(var(--u) * 10.5);line-height:1.4}
 
   /* X：投稿部分に公式タイムラインを重ねる（読み込めない時は絵の投稿が見える） */
-  .x-body{position:absolute;min-height:0;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u));border-radius:0 0 calc(var(--u) * 8) calc(var(--u) * 8);overflow:hidden}
+  .x-body{position:absolute;min-height:0;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u));border-radius:0 0 calc(var(--u) * 6) calc(var(--u) * 6);overflow:hidden}
   .x-body.is-rendered .x-embed{position:absolute;inset:0;height:auto;background:var(--navy)}
 }
 
