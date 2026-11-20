@@ -136,3 +136,12 @@ body{font-size:17px}
   .pixel-list li:before{left:9px;top:8px}
   .pixel-list.dense-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* Discord参加ボタン（エントリー：申請窓口） */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.discord-cta{display:flex;justify-content:center;margin:20px 0 18px}
+.discord-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:min(100%,340px);padding:15px 30px;border-radius:999px;color:#fff;text-decoration:none;font-weight:800;font-size:19px;letter-spacing:.02em;background:linear-gradient(#7984f5,#5865f2 55%,#4752c4);border:3px solid #fff3c7;box-shadow:0 0 0 3px #3b3f9e,3px 6px 0 2px rgba(38,31,68,.45);text-shadow:1px 2px 0 #2f3592;transition:transform .12s,filter .12s}
+.discord-button:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.discord-button:focus-visible{outline:3px solid #ffe7a2;outline-offset:4px}
+@media(max-width:700px){.discord-button{font-size:17px;padding:13px 22px;width:100%}}
+@media(prefers-reduced-motion:reduce){.discord-button{transition:none}}
