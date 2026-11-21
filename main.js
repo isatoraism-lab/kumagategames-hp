@@ -15,6 +15,17 @@ nav?.addEventListener('click',(e)=>{if(e.target.closest('a')){nav.classList.remo
   if(!feed||!/^[A-Za-z0-9_]{1,15}$/.test(safe))return;
   const link=document.getElementById('x-link');
   if(link)link.href=`https://x.com/${safe}`;
+  const follow=document.getElementById('x-follow');
+  if(follow)follow.href=`https://x.com/intent/follow?screen_name=${safe}`;
+  // X欄の中のスクロール：続きがあるかどうかで下のフェードを切り替える
+  feed.classList.add('x-scroll');
+  const updateMore=()=>{feed.classList.toggle('has-more',feed.scrollHeight-feed.clientHeight-feed.scrollTop>2)};
+  feed.addEventListener('scroll',updateMore,{passive:true});
+  window.addEventListener('resize',updateMore);
+  if('ResizeObserver' in window)new ResizeObserver(updateMore).observe(feed);
+  setTimeout(updateMore,0);
+  window.addEventListener('load',updateMore);
+  document.fonts?.ready.then(updateMore);
   const post=window.KUMA_X_POST||{};
   const url=String(post.url||'').trim().replace(/^https:\/\/twitter\.com\//,'https://x.com/').replace(/\?.*$/,'');
   const text=String(post.text||'').trim();
@@ -56,7 +67,7 @@ nav?.addEventListener('click',(e)=>{if(e.target.closest('a')){nav.classList.remo
   const main=el('div','x-post-main');
   const head=el('div','x-post-head');
   head.append(el('strong','x-post-name','KUMAGateGames'),el('span','x-post-meta',`@KUMAGateGames${when?' · '+when:''}`));
-  main.append(head,el('p','x-post-text',text),el('span','x-post-more','Xで続きを見る ›'));
+  main.append(head,el('p','x-post-text',text),el('span','x-post-more','Xで見る ›'));
   card.append(av,main);
   feed.append(card);
   feed.classList.add('has-post');

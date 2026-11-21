@@ -76,9 +76,11 @@ main{display:block}
 
 /* ---------- X（スマホ） ---------- */
 .x-card{background:var(--navy);border:2px solid #2b3c58;border-radius:8px;overflow:hidden;color:#fff}
-.x-head{display:flex;align-items:center;gap:10px;padding:8px 10px;border-bottom:1px solid #2a3a55;color:#fff;text-decoration:none}
+.x-head{display:flex;align-items:center;gap:10px;padding:8px 10px;border-bottom:1px solid #2a3a55}
+.x-profile{display:flex;align-items:center;gap:10px;flex:1;min-width:0;color:#fff;text-decoration:none}
 .x-logo{font-size:20px}.x-handle{flex:1;font-size:14px}
-.x-follow{padding:4px 12px;border-radius:999px;background:#fff;color:#111;font-size:12px}
+.x-follow{padding:4px 12px;border-radius:999px;background:#fff;color:#111;font-size:12px;text-decoration:none;white-space:nowrap}
+.x-follow:hover{background:#e8e8e8}
 .x-body{position:relative;min-height:120px}
 .x-fallback{display:flex;gap:10px;padding:10px}
 .x-avatar{width:44px;height:44px;border-radius:50%;flex-shrink:0;object-fit:cover}
@@ -94,8 +96,13 @@ main{display:block}
 .x-post-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}
 .x-post-name{font-size:14px}
 .x-post-meta{color:#93a3bd;font-size:12px;font-weight:500}
-.x-post-text{margin:5px 0 0;font-size:13px;line-height:1.55;font-weight:500;white-space:pre-line;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:9;overflow:hidden}
+.x-post-text{margin:5px 0 0;font-size:13px;line-height:1.55;font-weight:500;white-space:pre-line;overflow-wrap:anywhere}
 .x-post-more{display:inline-block;margin-top:6px;color:#7cc2ff;font-size:12px;font-weight:700}
+/* X欄の中だけスクロール（PC） */
+.x-scroll{scrollbar-width:thin;scrollbar-color:#4a6488 transparent}
+.x-scroll::-webkit-scrollbar{width:6px}
+.x-scroll::-webkit-scrollbar-thumb{background:#4a6488;border-radius:3px}
+.x-scroll::-webkit-scrollbar-track{background:transparent}
 .x-body.has-post .x-fallback{display:none}
 /* 投稿が未設定のときのタイムライン埋め込み（Xにログイン中の人だけ表示される） */
 .x-embed{position:absolute;inset:0;opacity:0;pointer-events:none;overflow:hidden}
@@ -215,19 +222,22 @@ main{display:block}
   .req-text{position:absolute;margin:0;left:0;right:0;top:calc((var(--h) - 35) * var(--u));font-size:calc(var(--u) * 10.5);line-height:1.4}
 
   /* X：投稿部分に公式タイムラインを重ねる（読み込めない時は絵の投稿が見える） */
+  .stage .x-head{display:block;padding:0;border:0}
   .x-body{position:absolute;min-height:0;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u));border-radius:0 0 calc(var(--u) * 6) calc(var(--u) * 6);overflow:hidden}
+  .x-body.has-post,.x-body.is-rendered{overflow-y:auto;overscroll-behavior:contain;background:#10233b}
+  /* まだ続きがあるときは下をうっすら暗くする（一番下までスクロールすると消える） */
+  .x-body.has-more{-webkit-mask-image:linear-gradient(#000 calc(100% - var(--u) * 16),rgba(0,0,0,.35));mask-image:linear-gradient(#000 calc(100% - var(--u) * 16),rgba(0,0,0,.35))}
   .x-body.is-rendered .x-embed{position:absolute;inset:0;height:auto;background:var(--navy)}
   .x-body.is-rendered .x-embed-post{bottom:auto;min-height:100%}
   .stage .x-post-link:hover{background:rgba(255,255,255,.06)}
-  .stage .x-post{position:absolute;inset:0;gap:calc(var(--u) * 9);padding:calc(var(--u) * 7) calc(var(--u) * 10) calc(var(--u) * 6);background:#10233b}
+  .stage .x-post{position:relative;min-height:100%;gap:calc(var(--u) * 9);padding:calc(var(--u) * 7) calc(var(--u) * 10) calc(var(--u) * 8);background:#10233b}
   .stage .x-post:hover{background:#142a46}
   .stage .x-post-avatar{width:calc(var(--u) * 34);height:calc(var(--u) * 34);margin-top:calc(var(--u) * 1)}
   .stage .x-post-head{gap:0 calc(var(--u) * 6)}
   .stage .x-post-name{font-size:calc(var(--u) * 12.5)}
   .stage .x-post-meta{font-size:calc(var(--u) * 10.5)}
-  .stage .x-post-text{margin-top:calc(var(--u) * 2.5);font-size:calc(var(--u) * 11);line-height:1.42;-webkit-line-clamp:3}
-  .stage .x-post-more{position:absolute;right:calc(var(--u) * 9);bottom:calc(var(--u) * 4);margin:0;padding-left:calc(var(--u) * 10);font-size:calc(var(--u) * 9.5);background:linear-gradient(90deg,transparent,#10233b calc(var(--u) * 10))}
-  .stage .x-post:hover .x-post-more{background:linear-gradient(90deg,transparent,#142a46 calc(var(--u) * 10))}
+  .stage .x-post-text{margin-top:calc(var(--u) * 2.5);font-size:calc(var(--u) * 11);line-height:1.5}
+  .stage .x-post-more{margin-top:calc(var(--u) * 4);font-size:calc(var(--u) * 10)}
 }
 
 @media (prefers-reduced-motion:reduce){.spot{transition:none}}
