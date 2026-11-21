@@ -85,6 +85,19 @@ main{display:block}
 .x-fallback strong{display:block;font-size:14px}
 .x-sub{display:block;color:#93a3bd;font-size:12px;font-weight:500}
 .x-fallback p{margin:6px 0 0;font-size:13px;line-height:1.55;font-weight:500}
+/* 最新の投稿（x-config.js）。url が空のときは表示されず、紹介文（PCでは絵）が見える */
+.x-post{display:flex;gap:10px;padding:10px;color:#fff;text-decoration:none;background:var(--navy)}
+.x-post:hover .x-post-more,.x-post:focus-visible .x-post-more{text-decoration:underline}
+.x-post:focus-visible{outline:3px solid #ffe7a2;outline-offset:-3px}
+.x-post-avatar{width:44px;height:44px;border-radius:50%;flex-shrink:0}
+.x-post-main{min-width:0;flex:1}
+.x-post-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}
+.x-post-name{font-size:14px}
+.x-post-meta{color:#93a3bd;font-size:12px;font-weight:500}
+.x-post-text{margin:5px 0 0;font-size:13px;line-height:1.55;font-weight:500;white-space:pre-line;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:9;overflow:hidden}
+.x-post-more{display:inline-block;margin-top:6px;color:#7cc2ff;font-size:12px;font-weight:700}
+.x-body.has-post .x-fallback{display:none}
+/* 投稿が未設定のときのタイムライン埋め込み（Xにログイン中の人だけ表示される） */
 .x-embed{position:absolute;inset:0;opacity:0;pointer-events:none;overflow:hidden}
 .x-embed a{font-size:0;color:transparent}
 .x-body.is-rendered .x-fallback{display:none}
@@ -198,6 +211,15 @@ main{display:block}
   /* X：投稿部分に公式タイムラインを重ねる（読み込めない時は絵の投稿が見える） */
   .x-body{position:absolute;min-height:0;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u));border-radius:0 0 calc(var(--u) * 6) calc(var(--u) * 6);overflow:hidden}
   .x-body.is-rendered .x-embed{position:absolute;inset:0;height:auto;background:var(--navy)}
+  .stage .x-post{position:absolute;inset:0;gap:calc(var(--u) * 9);padding:calc(var(--u) * 7) calc(var(--u) * 10) calc(var(--u) * 6);background:#10233b}
+  .stage .x-post:hover{background:#142a46}
+  .stage .x-post-avatar{width:calc(var(--u) * 34);height:calc(var(--u) * 34);margin-top:calc(var(--u) * 1)}
+  .stage .x-post-head{gap:0 calc(var(--u) * 6)}
+  .stage .x-post-name{font-size:calc(var(--u) * 12.5)}
+  .stage .x-post-meta{font-size:calc(var(--u) * 10.5)}
+  .stage .x-post-text{margin-top:calc(var(--u) * 2.5);font-size:calc(var(--u) * 11);line-height:1.42;-webkit-line-clamp:3}
+  .stage .x-post-more{position:absolute;right:calc(var(--u) * 9);bottom:calc(var(--u) * 4);margin:0;padding-left:calc(var(--u) * 10);font-size:calc(var(--u) * 9.5);background:linear-gradient(90deg,transparent,#10233b calc(var(--u) * 10))}
+  .stage .x-post:hover .x-post-more{background:linear-gradient(90deg,transparent,#142a46 calc(var(--u) * 10))}
 }
 
 @media (prefers-reduced-motion:reduce){.spot{transition:none}}
