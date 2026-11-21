@@ -102,7 +102,13 @@ main{display:block}
 .x-embed a{font-size:0;color:transparent}
 .x-body.is-rendered .x-fallback{display:none}
 .x-body.is-rendered .x-embed{position:relative;opacity:1;pointer-events:auto;height:320px}
-.x-embed iframe{width:100%!important;height:100%!important}
+.x-embed:not(.x-embed-post) iframe{width:100%!important;height:100%!important}
+.x-embed-post .twitter-tweet{margin:0!important}
+.x-embed-post iframe{width:100%!important;max-width:none!important}
+.x-body.is-rendered .x-embed-post{height:auto}
+.x-post-link{position:absolute;inset:0;z-index:2;font-size:0;color:transparent;border-radius:inherit}
+.x-post-link:focus-visible{outline:3px solid #ffe7a2;outline-offset:-3px}
+.x-body.is-rendered .x-post-link{display:none}
 
 /* ---------- アーカイブ（スマホ） ---------- */
 .archive-link{display:grid;grid-template-columns:44% 1fr;gap:10px;align-items:center;color:#3b2a34;text-decoration:none}
@@ -211,6 +217,8 @@ main{display:block}
   /* X：投稿部分に公式タイムラインを重ねる（読み込めない時は絵の投稿が見える） */
   .x-body{position:absolute;min-height:0;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u));border-radius:0 0 calc(var(--u) * 6) calc(var(--u) * 6);overflow:hidden}
   .x-body.is-rendered .x-embed{position:absolute;inset:0;height:auto;background:var(--navy)}
+  .x-body.is-rendered .x-embed-post{bottom:auto;min-height:100%}
+  .stage .x-post-link:hover{background:rgba(255,255,255,.06)}
   .stage .x-post{position:absolute;inset:0;gap:calc(var(--u) * 9);padding:calc(var(--u) * 7) calc(var(--u) * 10) calc(var(--u) * 6);background:#10233b}
   .stage .x-post:hover{background:#142a46}
   .stage .x-post-avatar{width:calc(var(--u) * 34);height:calc(var(--u) * 34);margin-top:calc(var(--u) * 1)}
