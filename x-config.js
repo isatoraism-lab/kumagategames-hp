@@ -9,6 +9,16 @@
    url が空のときは、絵に描かれた紹介文がそのまま表示されます。 */
 window.KUMA_X_POST = {
   url: 'https://x.com/KumaGateGames/status/2123781706994065644',
-  date: '',
-  text: ``
+  date: '2026-11-20',
+  text: `「次は何して遊ぼう？」🐻🎮
+マルチゲームコミュニティ「KUMAGateGames」が誕生しました✨
+公式Xです！
+
+🗓️シーズン制のゲームサーバー
+💡みんなのリクエストから企画
+🎲サーバーなしのゲーム募集も
+
+エントリー受付中！
+ルールを読んでDiscordから参加してね👇
+https://kumagate.games/`
 };
